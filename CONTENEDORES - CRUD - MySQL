@@ -1,0 +1,268 @@
+//GRUPO 3 - PROGRAMACION I
+//PROYECTO FINAL
+//BRYAN ALEXANDER MARTINEZ GUZMAN 0909-20-6903
+//JOSE PABLO GARAY RAMIREZ 0909-20-4766
+//MARLON DENILSON RUIZ VALDEZ 0909-18-17030
+//JOSE MANUEL MENJIVAR FUENTES 0909-20-12301
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+const int proy = 10;
+
+string Nav[proy] = {};
+string Prefno[proy] = {};
+string Prod[proy] = {};
+string Med[proy] = {};
+
+void AggContenedor(){
+	char naviera[20];
+	char contenedor[20];
+	char producto[50];
+	char medida [11];
+	
+	cin.ignore();
+	
+	cout << "Contenedor Prefijo/no.:  ";
+	cin.getline(contenedor, 20);
+	cout <<"Naviera:  ";
+	cin.getline(naviera, 20);
+	cout << "Producto:  ";
+	cin.getline(producto, 50);
+	cout <<"Medida:  ";
+	cin.getline(medida, 11);
+	
+	
+	
+	
+	
+	for (int x= 0; x < proy; x++)
+	{
+		if (Prefno[x] == "\0")
+		{
+			Prefno[x] = contenedor;
+			Nav[x] = naviera;
+			Prod[x] = producto;
+			Med[x] = medida;
+						
+			break;
+			
+		}
+	}
+}
+
+
+void ListaAgg(){
+	
+	
+	system("CLS");
+	cout << "DATOS REGISTRADOS " << endl;
+	cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" << endl;
+	
+	int counter = 0;
+	cout << "No.  | PREFIJOS  -  NO. de contenedor |   Naviera    |    Producto  |    Medida   |" << endl << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: \n";
+	for (int x = 0; x < proy; x++)
+	{
+		if (Prefno[x] != "\0")
+		{ 	
+			counter++;
+			cout << "  " << counter << " 	        " << Prefno[x] << "	         " << Nav[x] << "         "<< Prod[x] << "          " << Med[x] << endl;
+			
+		}
+	 } 
+	 
+	 if (counter == 0)
+	 {
+	 	cout <<"-|NINGUN CONTENEDOR HA SIDO INGRESADO|-" << endl;
+	 }
+	 
+	 cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" << endl;
+}
+
+
+void BusqRg(string search) {
+	
+	system("CLS");
+	cout << "ACTUALIZACION " << endl;
+	cout << "::::::::::::::::::::::::::::::" << endl;
+	
+	int counter = 0;
+	for (int x = 0; x < proy; x++)
+	{
+		
+		if (Prefno[x] == search)
+		{
+			
+			system("CLS");
+			
+			counter++;
+			cout << "No.  | PREFIJOS  -  NO. de contenedor |   Naviera    |    Producto  |    Medida   |" << endl << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: \n";
+			cout<< "  " << counter << "		" << Prefno[x] << "			" << Nav[x] << "         "<< Prod[x] << "          " << Med[x] << endl;
+			break; 
+		}
+	}
+	
+	if (counter == 0)
+	{
+			cout << "-|REGISTRO NO ENCONTRADO|-" << endl;
+	}
+	
+	cout<< ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" << endl;
+}
+
+
+void Actualizar(string search){
+	
+	char naviera[20];
+	char contenedor[20];
+	char producto[50];
+	char medida [11];
+	
+	int counter = 0;
+	
+	for (int x = 0; x < proy; x++)
+	{
+		if(Prefno[x] == search)
+		{
+			
+			counter++;
+			
+			cout << "NAVIERA ";
+			cin.getline(naviera, 20);
+			Nav[x] = naviera;
+			
+			
+			cout << "PRODUCTO ";
+			cin.getline(producto, 50);
+			Prod[x] = producto;
+			
+			cout << "MEDIDA ";
+			cin.getline(medida, 11);
+			Med[x] = medida;
+			
+			
+			break;
+			
+			cout << "ACTUALIZACION REALIZADA" << endl;
+		}
+	}
+	
+	if (counter == 0)
+	{
+		cout << "-|CONTENEDOR NO EXISTENTE|-" << endl;
+	}
+	
+}
+
+
+void Eliminar(string search){
+	
+	int counter = 0;
+	
+	for (int x= 0; x < proy; x++)
+	{
+		if(Prefno[x] == search)
+		{
+			counter++;
+			
+			Nav[x] = "";
+			Prefno[x] = "";
+			Prod[x] = "";
+			Med[x] = "";
+			
+			cout << "-|REGISTRO ELIMINADO|-" << endl;
+			break;
+			
+		}
+	}
+	
+	if(counter == 0)
+	{
+		cout << "-| PREFIJO / NO. DE CONTENEDOR NO EXISTENTE |-"<< endl;
+	}
+}
+int main ()
+{
+	
+	std:: cout << "MENU \n";
+	int option;
+	string prefno;
+	system("CLS");
+	
+	
+do{
+
+	cout << " 	" << endl;
+	cout << "\t \t \t \t " << "   PROYECTO FINAL - PROGRAMACION I" <<endl;
+	cout << "\t \t \t \t" <<"INGRESO, ACTUALIZACION Y CARGA DE CONTENEDORES" <<endl;
+	cout << "\t \t \t \t \t \t" <<"GRUPO 3" <<endl;
+
+
+
+	cout << "1- REGISTRO A CONTENEDOR" << endl;
+	cout << "2- ACTUALIZACION DE DATOS" << endl;
+	cout << "3- ELIMINAR REGISTROS" << endl;	
+	cout << "4- BUSQUEDA DE CONTENEDORES" << endl;		
+	cout << "5- MOSTRAR INGRESOS" << endl;	
+	cout << "6- SALIR" << endl;	
+	cout << "SELECCIONAR OPCION ENTRE 1 AL 6"<< endl;
+	cout << "::::::::::::::::::::::::::::::::" << endl;	
+	
+		cout << "SELECCIONAR OPCION>>";
+		cin >> option;
+		
+		
+		switch (option)
+		
+		{
+			
+			case 1: AggContenedor();
+				system("CLS");
+				break;
+			
+			case 2:
+				cin.ignore();
+				cout<< "No. DE CONTENDOR A ACTUALIZAR>>";
+				getline(cin, prefno);
+				Actualizar(prefno);
+				system("CLS");
+				break;
+				
+			case 3: 
+				cin.ignore();
+				cout << "ELIMINAR POR No. contenedor >>";
+				getline(cin, prefno);
+				Eliminar(prefno);
+				cin.ignore();
+				system("CLS");
+				break;
+				
+				
+			
+			case 4: 
+				
+				cin.ignore();
+				cout<< "Buscar por no. contenedor>>  ";
+				getline(cin, prefno);
+				BusqRg(prefno);
+				break;
+			
+			case 5: ListaAgg();
+				break;
+				
+			case 6: break; 
+			default: 
+				cout << "OPCION INCORRECTA, POR FAVOR VUELVA A INTENTAR," << endl;
+					cout << "UTILIZAR SOLAMENTE OPCIONES DEL 1 AL 6." << endl;
+				system ("pause"); 
+				system ("cls");
+		
+		}
+		
+		
+		} while (option != 6);
+ 
+ }
